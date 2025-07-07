@@ -1,0 +1,56 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.3'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.floop'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Spring Web: RESTful API 개발을 위한 핵심 모듈
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// Spring Data JPA: 데이터베이스 작업을 쉽게 처리하기 위한 모듈
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// Spring Security: 비밀번호 암호화 등 보안 기능 제공
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	// Validation: DTO의 유효성 검증(@NotBlank, @Email 등)을 위한 모듈
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// Lombok: @Getter, @Setter, 생성자 등 반복적인 코드를 줄여주는 라이브러리
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// H2 Database: 개발 및 테스트용으로 사용하기 좋은 인메모리 데이터베이스
+	runtimeOnly 'com.h2database:h2'
+
+	// Spring Boot Test: 테스트 코드 작성을 위한 모듈
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
