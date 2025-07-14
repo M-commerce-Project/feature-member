@@ -22,10 +22,13 @@ public class Member {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String email;
+    private String userId;
 
     @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false, unique = true)
+    private String nickname;
 
     @Column(nullable = false)
     private String password;
@@ -35,8 +38,8 @@ public class Member {
     private LocalDateTime createdAt;
 
     @Builder
-    public Member(String email, String name, String password) {
-        this.email = email;
+    public Member(String userId, String name, String password) {
+        this.userId = userId;
         this.name = name;
         this.password = password;
     }
